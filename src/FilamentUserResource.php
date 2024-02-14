@@ -8,7 +8,6 @@ use Magarrent\FilamentUserResource\Resources\UserResource;
 
 class FilamentUserResource implements Plugin
 {
-
     public function getId(): string
     {
         return 'magarrent-filament-user-resource';
@@ -18,7 +17,7 @@ class FilamentUserResource implements Plugin
     {
         $panel
             ->resources([
-                UserResource::class
+                UserResource::class,
             ]);
     }
 

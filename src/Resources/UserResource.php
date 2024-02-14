@@ -2,7 +2,6 @@
 
 namespace Magarrent\FilamentUserResource\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Placeholder;
@@ -54,11 +53,11 @@ class UserResource extends Resource
 
                 Placeholder::make('created_at')
                     ->label('Created Date')
-                    ->content(fn(?User $record): string => $record?->created_at?->diffForHumans() ?? '-'),
+                    ->content(fn (?User $record): string => $record?->created_at?->diffForHumans() ?? '-'),
 
                 Placeholder::make('updated_at')
                     ->label('Last Modified Date')
-                    ->content(fn(?User $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
+                    ->content(fn (?User $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
             ]);
     }
 
@@ -97,12 +96,12 @@ class UserResource extends Resource
                         ->icon('heroicon-o-inbox-arrow-down')
                         ->label(__('Send Remember Password Email'))
                         ->translateLabel()
-                        ->action(function(User $user) {
+                        ->action(function (User $user) {
                             $status = Password::sendResetLink(
                                 ['email' => $user->getEmailForPasswordReset()]
                             );
 
-                            if($status === Password::RESET_LINK_SENT) {
+                            if ($status === Password::RESET_LINK_SENT) {
                                 Notification::make()
                                     ->title(__('Password Reset Email Sent'))
                                     ->body(__('A password reset email has been sent to the user.'))
@@ -110,7 +109,7 @@ class UserResource extends Resource
                                     ->send();
                             }
                         }),
-                ])
+                ]),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
